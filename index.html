@@ -1,1 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otipax | Medical Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #ff6b00;
+            --light-blue: #e1f5fe;
+            --text-color: #333;
+            --background-light: #f8f9fa;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--background-light);
+            overflow-x: hidden;
+        }
+
+        body.arabic {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #2c5cc5);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-subtitle {
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .language-switch {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 100;
+        }
+
+        body.arabic .language-switch {
+            right: auto;
+            left: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.3);
+            transition: var(--transition);
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 55px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 34px;
+            z-index: 1;
+        }
+
+        .language-label {
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(57px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .product-image {
+            max-width: 300px;
+            margin: 0 auto 2rem;
+            display: block;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        body.arabic ul, body.arabic ol {
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
+
+        .highlight {
+            background-color: var(--light-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        body.arabic .highlight {
+            border-left: none;
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .dropper-image {
+            max-width: 200px;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), #2c5cc5);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+        }
+
+        .author-credit {
+            margin-top: 1rem;
+            font-style: italic;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .water-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%232c5cc5" fill-opacity="0.1" d="M0,192L48,176C96,160,192,128,288,128C384,128,480,160,576,165.3C672,171,768,149,864,144C960,139,1056,149,1152,144C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            z-index: -1;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .language-switch {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 1rem auto;
+                display: block;
+            }
+            
+            body.arabic .language-switch {
+                left: 0;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+                margin-top: 1rem;
+            }
+            
+            .content-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="water-animation"></div>
+        <div class="language-switch">
+            <label class="switch">
+                <input type="checkbox" id="languageToggle">
+                <span class="slider">
+                    <span class="language-label">EN</span>
+                    <span class="language-label">عربي</span>
+                </span>
+            </label>
+        </div>
+        <div class="header-content">
+            <div>
+                <h1 class="product-title" id="title-en">OTIPAX</h1>
+                <h1 class="product-title hidden" id="title-ar">أوتيباكس</h1>
+                <p class="product-subtitle" id="subtitle-en">Ear Drop Solution</p>
+                <p class="product-subtitle hidden" id="subtitle-ar">قطرة أذن</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <img src="/api/placeholder/400/320" alt="Otipax Product" class="product-image">
+
+        <!-- English Content -->
+        <div id="content-en">
+            <section class="content-section">
+                <h2 class="section-title">Composition</h2>
+                <p>Otipax is an ear drop solution containing two active substances:</p>
+                <ul>
+                    <li><strong>Phenazone (4%)</strong> - Offers analgesic and anti-inflammatory properties</li>
+                    <li><strong>Lidocaine hydrochloride (1%)</strong> - Serves as a local anesthetic</li>
+                </ul>
+                <p>This medication is intended for auricular use and is supplied in a 15 ml bottle.</p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Indications</h2>
+                <p>Otipax is used for the local symptomatic treatment of certain painful conditions of the middle ear with an intact tympanic membrane, including:</p>
+                <ul>
+                    <li>Congestive acute otitis media</li>
+                    <li>Phlyctenular viral otitis</li>
+                    <li>Barotrauma otitis</li>
+                </ul>
+                <div class="highlight">
+                    <p>It is suitable for adults and children above 6 months of age.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Dosage and Administration</h2>
+                <p>The recommended dosage is 4 drops into the auditory meatus of the affected ear, administered 2 to 3 times daily.</p>
+                <p>Before application, warm the bottle between your hands to avoid the discomfort of instilling a cold solution.</p>
+                <div class="highlight">
+                    <p>Treatment duration should not exceed 10 days. If symptoms persist, consult your doctor.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Contraindications</h2>
+                <p>Do not use Otipax if you have:</p>
+                <ul>
+                    <li>A known allergy to lidocaine, phenazone, or any other ingredients in the formulation</li>
+                    <li>A perforated tympanic membrane of infectious or traumatic origin</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Warnings and Precautions</h2>
+                <p>Ensure the tympanic membrane is intact before using Otipax, as contact with the middle ear can cause adverse effects. If there is a perforation in the eardrum, do not use this medication.</p>
+                <p>Pregnant or breastfeeding women should consult their healthcare provider before use.</p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Side Effects</h2>
+                <p>Side effects are rare but may include local reactions such as allergy, irritation, or redness of the auditory meatus.</p>
+                <div class="highlight">
+                    <p>If you experience any adverse effects, discontinue use and consult your doctor or pharmacist.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Storage</h2>
+                <ul>
+                    <li>Store Otipax below 30°C and keep it out of reach of children.</li>
+                    <li>Do not use the product after the expiry date indicated on the packaging.</li>
+                    <li>Once opened, the solution should not be used for more than 10 days.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Packaging</h2>
+                <p>Otipax is available in a 15 ml bottle containing a clear, colorless, or slightly amber liquid with an alcohol odor. Each package includes one bottle equipped with a dropper.</p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">Manufacturer</h2>
+                <p>Biocodex 7 Avenue Gallieni 94250 Gentilly, France</p>
+                <p>For more detailed information, please refer to the patient information leaflet or consult your healthcare provider.</p>
+            </section>
+        </div>
+
+        <!-- Arabic Content -->
+        <div id="content-ar" class="hidden">
+            <section class="content-section">
+                <h2 class="section-title">التركيب</h2>
+                <p>أوتيباكس هو محلول قطرة للأذن يحتوي على مادتين فعالتين:</p>
+                <ul>
+                    <li><strong>فينازون (4٪)</strong> - يقدم خصائص مسكنة ومضادة للالتهابات</li>
+                    <li><strong>هيدروكلوريد الليدوكائين (1٪)</strong> - يعمل كمخدر موضعي</li>
+                </ul>
+                <p>هذا الدواء مخصص للاستخدام الأذني ويُقدم في زجاجة سعة 15 مل.</p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">دواعي الاستعمال</h2>
+                <p>يُستخدم أوتيباكس للعلاج الموضعي للأعراض في بعض حالات الألم في الأذن الوسطى مع وجود غشاء طبلي سليم، بما في ذلك:</p>
+                <ul>
+                    <li>التهاب الأذن الوسطى الحاد الاحتقاني</li>
+                    <li>التهاب الأذن الفيروسي الحويصلي</li>
+                    <li>التهاب الأذن الناتج عن تغيرات الضغط</li>
+                </ul>
+                <div class="highlight">
+                    <p>يُناسب هذا الدواء البالغين والأطفال فوق عمر 6 أشهر.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">الجرعة وطريقة الاستخدام</h2>
+                <p>الجرعة الموصى بها هي 4 قطرات في قناة الأذن المصابة، تُستخدم 2 إلى 3 مرات يوميًا.</p>
+                <p>قبل التطبيق، يُفضل تدفئة الزجاجة بين يديك لتجنب الشعور بعدم الراحة الناتج عن استخدام محلول بارد.</p>
+                <div class="highlight">
+                    <p>يجب ألا تتجاوز مدة العلاج 10 أيام. إذا استمرت الأعراض، استشر طبيبك.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">موانع الاستعمال</h2>
+                <p>لا تستخدم أوتيباكس إذا كان لديك:</p>
+                <ul>
+                    <li>حساسية معروفة تجاه الليدوكائين، الفينازون، أو أي من المكونات الأخرى في التركيبة</li>
+                    <li>ثقب في غشاء الطبلة ناتج عن عدوى أو إصابة</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">التحذيرات والاحتياطات</h2>
+                <p>تأكد من سلامة غشاء الطبلة قبل استخدام أوتيباكس، حيث إن ملامسة الأذن الوسطى قد تسبب آثارًا سلبية. إذا كان هناك ثقب في طبلة الأذن، لا تستخدم هذا الدواء.</p>
+                <p>يجب على النساء الحوامل أو المرضعات استشارة مقدم الرعاية الصحية قبل الاستخدام.</p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">الآثار الجانبية</h2>
+                <p>الآثار الجانبية نادرة ولكن قد تشمل تفاعلات موضعية مثل الحساسية، التهيج، أو احمرار قناة الأذن.</p>
+                <div class="highlight">
+                    <p>إذا شعرت بأي آثار سلبية، توقف عن الاستخدام واستشر طبيبك أو الصيدلي.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">التخزين</h2>
+                <ul>
+                    <li>يُحفظ أوتيباكس في درجة حرارة أقل من 30 درجة مئوية وبعيدًا عن متناول الأطفال.</li>
+                    <li>لا تستخدم المنتج بعد تاريخ انتهاء الصلاحية المدون على العبوة.</li>
+                    <li>بعد الفتح، يجب عدم استخدام المحلول لأكثر من 10 أيام.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">التعبئة</h2>
+                <p>يتوفر أوتيباكس في زجاجة سعة 15 مل تحتوي على سائل شفاف، عديم اللون أو مائل قليلاً إلى اللون الكهرماني، وله رائحة كحولية.</p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">الشركة المصنعة</h2>
+                <p>بيوكوديكس 7 شارع جاليني 94250 جينتيلي، فرنسا</p>
+                <p>لمزيد من المعلومات التفصيلية، يرجى الرجوع إلى نشرة معلومات المريض أو استشارة مقدم الرعاية الصحية الخاص بك.</p>
+            </section>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p id="footer-en">All rights reserved © 2025 PH.Mohamed Kamal Telis</p>
+        <p id="footer-ar" class="hidden">جميع الحقوق محفوظة © 2025 صيدلي.محمد كمال طليس</p>
+        <div class="author-credit" id="author-en">Developed with care by PH.Mohamed Kamal Telis</div>
+        <div class="author-credit hidden" id="author-ar">تم التطوير بعناية بواسطة صيدلي.محمد كمال طليس</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('languageToggle');
+            const contentEn = document.getElementById('content-en');
+            const contentAr = document.getElementById('content-ar');
+            const titleEn = document.getElementById('title-en');
+            const titleAr = document.getElementById('title-ar');
+            const subtitleEn = document.getElementById('subtitle-en');
+            const subtitleAr = document.getElementById('subtitle-ar');
+            const footerEn = document.getElementById('footer-en');
+            const footerAr = document.getElementById('footer-ar');
+            const authorEn = document.getElementById('author-en');
+            const authorAr = document.getElementById('author-ar');
+            
+            languageToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    // Switch to Arabic
+                    document.body.classList.add('arabic');
+                    contentEn.classList.add('hidden');
+                    contentAr.classList.remove('hidden');
+                    titleEn.classList.add('hidden');
+                    titleAr.classList.remove('hidden');
+                    subtitleEn.classList.add('hidden');
+                    subtitleAr.classList.remove('hidden');
+                    footerEn.classList.add('hidden');
+                    footerAr.classList.remove('hidden');
+                    authorEn.classList.add('hidden');
+                    authorAr.classList.remove('hidden');
+                } else {
+                    // Switch to English
+                    document.body.classList.remove('arabic');
+                    contentEn.classList.remove('hidden');
+                    contentAr.classList.add('hidden');
+                    titleEn.classList.remove('hidden');
+                    titleAr.classList.add('hidden');
+                    subtitleEn.classList.remove('hidden');
+                    subtitleAr.classList.add('hidden');
+                    footerEn.classList.remove('hidden');
+                    footerAr.classList.add('hidden');
+                    authorEn.classList.remove('hidden');
+                    authorAr.classList.add('hidden');
+                }
+            });
+
+            // Check if user prefers Arabic based on browser language
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.includes('ar')) {
+                languageToggle.checked = true;
+                // Trigger the change event
+                const event = new Event('change');
+                languageToggle.dispatchEvent(event);
+            }
+        });
+    </script>
+</body>
+</html>
