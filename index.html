@@ -263,9 +263,15 @@
                 padding: 1rem;
             }
         }
-            .logo {
+            @keyframes logoAnimation {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+           .logo {
             max-width: 150px;
             margin-bottom: 1rem;
+            animation: logoAnimation 3s infinite;
         }
 
             body.arabic .logo {
