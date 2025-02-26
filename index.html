@@ -106,7 +106,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
-        .slider:before {
+            .slider:before {
             position: absolute;
             content: "";
             height: 26px;
@@ -117,10 +117,6 @@
             border-radius: 50%;
             transition: var(--transition);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        input:checked + .slider {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
         }
         
         input:checked + .slider:before {
@@ -277,25 +273,27 @@
             margin-right: 0;
         }
             .language-label {
+            position: absolute;
             font-size: 0.9rem;
             color: white;
             z-index: 10;
+            transition: var(--transition);
         }
         
         .en-label {
-            transform: translateX(20px);
+            left: 10px;
         }
         
         .ar-label {
-            transform: translateX(-20px);
+            right: 10px;
         }
         
         input:checked + .slider .en-label {
-            transform: translateX(-70px);
+            opacity: 0;
         }
         
         input:checked + .slider .ar-label {
-            transform: translateX(70px);
+            opacity: 1;
         }
     </style>
 </head>
