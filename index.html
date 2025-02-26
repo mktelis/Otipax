@@ -490,57 +490,63 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const languageToggle = document.getElementById('languageToggle');
-            const contentEn = document.getElementById('content-en');
-            const contentAr = document.getElementById('content-ar');
-            const titleEn = document.getElementById('title-en');
-            const titleAr = document.getElementById('title-ar');
-            const subtitleEn = document.getElementById('subtitle-en');
-            const subtitleAr = document.getElementById('subtitle-ar');
-            const footerEn = document.getElementById('footer-en');
-            const footerAr = document.getElementById('footer-ar');
-            const authorEn = document.getElementById('author-en');
-            const authorAr = document.getElementById('author-ar');
-            
-            languageToggle.addEventListener('change', function() {
-                if (this.checked) {
-                    // Switch to Arabic
-                    document.body.classList.add('arabic');
-                    contentEn.classList.add('hidden');
-                    contentAr.classList.remove('hidden');
-                    titleEn.classList.add('hidden');
-                    titleAr.classList.remove('hidden');
-                    subtitleEn.classList.add('hidden');
-                    subtitleAr.classList.remove('hidden');
-                    footerEn.classList.add('hidden');
-                    footerAr.classList.remove('hidden');
-                    authorEn.classList.add('hidden');
-                    authorAr.classList.remove('hidden');
-                } else {
-                    // Switch to English
-                    document.body.classList.remove('arabic');
-                    contentEn.classList.remove('hidden');
-                    contentAr.classList.add('hidden');
-                    titleEn.classList.remove('hidden');
-                    titleAr.classList.add('hidden');
-                    subtitleEn.classList.remove('hidden');
-                    subtitleAr.classList.add('hidden');
-                    footerEn.classList.remove('hidden');
-                    footerAr.classList.add('hidden');
-                    authorEn.classList.remove('hidden');
-                    authorAr.classList.add('hidden');
-                }
-            });
+    const languageToggle = document.getElementById('languageToggle');
+    const contentEn = document.getElementById('content-en');
+    const contentAr = document.getElementById('content-ar');
+    const titleEn = document.getElementById('title-en');
+    const titleAr = document.getElementById('title-ar');
+    const subtitleEn = document.getElementById('subtitle-en');
+    const subtitleAr = document.getElementById('subtitle-ar');
+    const footerEn = document.getElementById('footer-en');
+    const footerAr = document.getElementById('footer-ar');
+    const authorEn = document.getElementById('author-en');
+    const authorAr = document.getElementById('author-ar');
+    const enLabel = document.querySelector('.en-label');
+    const arLabel = document.querySelector('.ar-label');
 
-            // Check if user prefers Arabic based on browser language
-            const userLang = navigator.language || navigator.userLanguage;
-            if (userLang.includes('ar')) {
-                languageToggle.checked = true;
-                // Trigger the change event
-                const event = new Event('change');
-                languageToggle.dispatchEvent(event);
-            }
-        });
+    languageToggle.addEventListener('change', function() {
+        if (this.checked) {
+            // Switch to Arabic
+            document.body.classList.add('arabic');
+            contentEn.classList.add('hidden');
+            contentAr.classList.remove('hidden');
+            titleEn.classList.add('hidden');
+            titleAr.classList.remove('hidden');
+            subtitleEn.classList.add('hidden');
+            subtitleAr.classList.remove('hidden');
+            footerEn.classList.add('hidden');
+            footerAr.classList.remove('hidden');
+            authorEn.classList.add('hidden');
+            authorAr.classList.remove('hidden');
+            enLabel.classList.add('hidden');
+            arLabel.classList.remove('hidden');
+        } else {
+            // Switch to English
+            document.body.classList.remove('arabic');
+            contentEn.classList.remove('hidden');
+            contentAr.classList.add('hidden');
+            titleEn.classList.remove('hidden');
+            titleAr.classList.add('hidden');
+            subtitleEn.classList.remove('hidden');
+            subtitleAr.classList.add('hidden');
+            footerEn.classList.remove('hidden');
+            footerAr.classList.add('hidden');
+            authorEn.classList.remove('hidden');
+            authorAr.classList.add('hidden');
+            enLabel.classList.remove('hidden');
+            arLabel.classList.add('hidden');
+        }
+    });
+
+    // Check if user prefers Arabic based on browser language
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.includes('ar')) {
+        languageToggle.checked = true;
+        // Trigger the change event
+        const event = new Event('change');
+        languageToggle.dispatchEvent(event);
+    }
+});
     </script>
 </body>
 </html>
