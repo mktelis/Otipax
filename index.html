@@ -300,6 +300,19 @@
         input:checked + .slider .ar-label {
             opacity: 1;
         }
+        #mute-toggle {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+#mute-toggle:hover {
+    background-color: var(--secondary-color);
+}
     </style>
 </head>
 <body>
@@ -545,14 +558,19 @@
         languageToggle.dispatchEvent(event);
     }
             // Mute/unmute video
-        muteToggle.addEventListener('click', function() {
-            if (video.muted) {
-                video.muted = false;
-                muteToggle.textContent = 'Mute';
-            } else {
-                video.muted = true;
-                muteToggle.textContent = 'Unmute';
-            }
+document.addEventListener('DOMContentLoaded', function() {
+    const muteToggle = document.getElementById('mute-toggle');
+    const video = document.getElementById('video');
+    
+    muteToggle.addEventListener('click', function() {
+        if (video.muted) {
+            video.muted = false;
+            this.textContent = 'Mute';
+        } else {
+            video.muted = true;
+            this.textContent = 'Unmute';
+        }
+    });
 });
     </script>
 </body>
