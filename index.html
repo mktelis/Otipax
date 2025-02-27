@@ -300,29 +300,25 @@
         input:checked + .slider .ar-label {
             opacity: 1;
         }
-        #mute-toggle {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: var(--transition);
-}
-
-#mute-toggle:hover {
-    background-color: var(--secondary-color);
-}
     </style>
 </head>
 <body>
-<div class="header-content">
+<div class="header">
+    <div class="language-switch">
+        <label class="switch">
+            <input type="checkbox" id="languageToggle">
+            <span class="slider">
+                <span class="language-label en-label">EN</span>
+                <span class="language-label ar-label">عربي</span>
+            </span>
+        </label>
+    </div>
+    <div class="header-content">
         <img src="000 logo with ideogram - then upscaled with Recraft- then transparent with Recraft.png" alt="Logo" class="logo">
-        <video id="video" width="150" height="100" controls autoplay muted>
+        <video width="150" height="100" controls autoplay muted>
             <source src="000 YouCut_20250227_004324266.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <button id="mute-toggle">Unmute</button>
     </div>
     <div>
         <h1 class="product-title" id="title-en">OTIPAX</h1>
@@ -557,20 +553,6 @@
         const event = new Event('change');
         languageToggle.dispatchEvent(event);
     }
-            // Mute/unmute video
-document.addEventListener('DOMContentLoaded', function() {
-    const muteToggle = document.getElementById('mute-toggle');
-    const video = document.getElementById('video');
-    
-    muteToggle.addEventListener('click', function() {
-        if (video.muted) {
-            video.muted = false;
-            this.textContent = 'Mute';
-        } else {
-            video.muted = true;
-            this.textContent = 'Unmute';
-        }
-    });
 });
     </script>
 </body>
