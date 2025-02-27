@@ -553,6 +553,15 @@
         const event = new Event('change');
         languageToggle.dispatchEvent(event);
     }
+            document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('promoVideo');
+        
+        video.addEventListener('click', function() {
+            if (video.muted) {
+                video.muted = false;
+            } else {
+                video.muted = true;
+        }
 });
     </script>
 </body>
