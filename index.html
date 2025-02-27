@@ -47,13 +47,12 @@
             box-shadow: var(--box-shadow);
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+           .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px; /* Adjust the gap as needed */
+    }
 
         .product-title {
             font-size: 2.5rem;
@@ -304,7 +303,7 @@
     </style>
 </head>
 <body>
-<div class="header">    
+<div class="header">
     <div class="language-switch">
         <label class="switch">
             <input type="checkbox" id="languageToggle">
@@ -314,12 +313,12 @@
             </span>
         </label>
     </div>
-    <div>
+    <div class="header-content">
         <img src="000 logo with ideogram - then upscaled with Recraft- then transparent with Recraft.png" alt="Logo" class="logo">
         <video width="150" height="100" controls>
             <source src="000 YouCut_20250227_004324266.mp4" type="video/mp4">
             Your browser does not support the video tag.
-        </video>    
+        </video>
     </div>
     <div>
         <h1 class="product-title" id="title-en">OTIPAX</h1>
